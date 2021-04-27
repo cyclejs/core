@@ -22,6 +22,7 @@
   "commithelper": {
     "scopes": [
       "http",
+      "dom",
       "isolate",
       "run",
       "state",

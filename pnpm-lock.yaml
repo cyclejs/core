@@ -26,6 +26,17 @@ importers:
       rollup-plugin-sourcemaps: 0.6.3_rollup@2.45.2
       typescript: 4.2.4
 
+  dom:
+    specifiers:
+      '@cycle/callbags': ^3.0.2
+      '@cycle/run': workspace:^6.0.0
+      snabbdom: ^3.0.1
+    dependencies:
+      '@cycle/callbags': 3.0.2
+      snabbdom: 3.0.1
+    devDependencies:
+      '@cycle/run': link:../run
+
   http:
     specifiers:
       '@cycle/callbags': ^3.0.2
@@ -4957,6 +4968,11 @@ packages:
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
     dev: true
+
+  /snabbdom/3.0.1:
+    resolution: {integrity: sha512-H4gKokDT1HPe3dlGyTihNw0NtEH9FxZy55MXp3ODM4O30NBRe+11veox1wf/CP9NfGcbStDM3BmO1DFC9/5wRw==}
+    engines: {node: '>=8.3.0'}
+    dev: false
 
   /socket.io-adapter/2.1.0:
     resolution: {integrity: sha512-+vDov/aTsLjViYTwS9fPy5pEtTkrbEKsw2M+oVSoFGw6OD1IpvlV1VPhUzNbofCQ8oyMbdYJqDtGdmHQK6TdPg==}

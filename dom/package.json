@@ -1,0 +1,54 @@
+{
+  "name": "@cycle/dom",
+  "version": "22.8.0",
+  "description": "The standard DOM Driver for Cycle.js, based on Snabbdom",
+  "license": "MIT",
+  "homepage": "https://cycle.js.org",
+  "bugs": "https://github.com/cyclejs/cyclejs/issues",
+  "repository": "https://github.com/cyclejs/cyclejs/tree/master/dom",
+  "contributors": [
+    {
+      "name": "Andre Staltz",
+      "email": "andre@staltz.com"
+    },
+    {
+      "name": "Jan van Brügge",
+      "email": "supermanitu@gmail.com"
+    }
+  ],
+  "keywords": [
+    "reactive",
+    "framework",
+    "rxjs",
+    "rx",
+    "unidirectional",
+    "mvi",
+    "virtual-dom"
+  ],
+  "main": "lib/cjs/index.js",
+  "module": "lib/es6/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "types": "lib/cjs/index.d.ts",
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json && pnpm run build:cjs && pnpm run build:esm",
+    "build:cjs": "BUNDLE_FORMAT=cjs rollup -c ../configs/rollup.config.ts",
+    "build:esm": "BUNDLE_FORMAT=esm rollup -c ../configs/rollup.config.ts"
+  },
+  "dependencies": {
+    "@cycle/callbags": "^3.0.2",
+    "snabbdom": "^3.0.1"
+  },
+  "peerDependencies": {
+    "@cycle/run": "^6.0.0"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/cyclejs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@cycle/run": "workspace:^6.0.0"
+  }
+}
