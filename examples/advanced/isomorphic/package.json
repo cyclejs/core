@@ -14,7 +14,7 @@
     "babelify": "^7.2.0",
     "browserify": "13.0.x",
     "express": "^4.12.3",
-    "serialize-javascript": "^1.0.0",
+    "serialize-javascript": "^4.0.0",
     "uglifyify": "^3.0.1"
   },
   "scripts": {
