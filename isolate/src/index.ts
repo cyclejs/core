@@ -136,17 +136,19 @@ function isolateAllSinks<So extends Sources, Si>(
 export type OuterSo<ISo> = {
   [K in keyof ISo]: ISo[K] extends IsolateableSource
     ? FirstArg<IsolateableSource['isolateSource']>
-    : ISo[K]
+    : ISo[K];
 };
 
 export type OuterSi<ISo, ISi> = {
   [K in keyof ISo & keyof ISi]: ISo[K] extends IsolateableSource
-    ? (ReturnType<ISo[K]['isolateSink']> extends Stream<infer T>
+    ? (ReturnType<ISo[K]['isolateSink']> extends ISi[K]
+        ? ISi[K]
+        : ReturnType<ISo[K]['isolateSink']> extends Stream<infer T>
         ? Stream<T>
         : (ReturnType<ISo[K]['isolateSink']> extends Stream<any>
             ? Stream<unknown>
             : unknown))
-    : ISi[K]
+    : ISi[K];
 } &
   {[K in Exclude<keyof ISi, keyof ISo>]: ISi[K]};
 
