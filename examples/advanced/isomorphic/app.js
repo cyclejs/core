@@ -32,9 +32,9 @@ function renderAboutPage() {
 }
 
 export default function app(sources) {
-  const click$ = sources.DOM.select('.link').events('click');
-
-  const preventedEvent$ = click$;
+  const click$ = sources.DOM.select('.link').events('click', {
+    preventDefault: true
+  });
 
   const contextFromClick$ = click$
     .map(ev => ({route: ev.currentTarget.attributes.href.value}));
@@ -54,7 +54,6 @@ export default function app(sources) {
     });
 
   return {
-    DOM: vdom$,
-    PreventDefault: preventedEvent$
+    DOM: vdom$
   };
 }

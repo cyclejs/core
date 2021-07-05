@@ -5,17 +5,18 @@
   "author": "Andre Staltz",
   "license": "MIT",
   "dependencies": {
-    "@cycle/dom": "15.0.0-rc.3",
-    "@cycle/run": "1.0.0-rc.9",
-    "xstream": "10.2",
+    "@cycle/dom": "20.4.0",
+    "@cycle/html": "2.4.0",
+    "@cycle/run": "4.1.0",
+    "xstream": "11.2",
     "babel-cli": "^6.7.5",
-    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.4.3",
-    "babelify": "^7.2.0",
-    "browserify": "13.0.x",
+    "babelify": "^8.0.0",
+    "browserify": "16.2.x",
     "express": "^4.12.3",
     "serialize-javascript": "^1.0.0",
-    "uglifyify": "^3.0.1"
+    "uglifyify": "^5.0.0"
   },
   "scripts": {
     "start": "npm install && babel-node ./server.js"

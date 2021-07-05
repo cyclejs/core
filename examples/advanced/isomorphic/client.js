@@ -9,14 +9,7 @@ function clientSideApp(sources) {
   return sinks;
 }
 
-function preventDefaultDriver(ev$) {
-  ev$.addListener({
-    next: ev => ev.preventDefault(),
-  });
-}
-
 run(clientSideApp, {
   DOM: makeDOMDriver('.app-container'),
   context: () => xs.of(window.appContext),
-  PreventDefault: preventDefaultDriver,
 });
