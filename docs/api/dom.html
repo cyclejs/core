@@ -88,14 +88,14 @@ restricted to the element(s) that matches the CSS `selector` given. To select
 the page's `document`, use `.select('document')`. To select the container
 element for this app, use `.select(':root')`.
 
-**`DOMSource.events(eventType, options)`** returns a stream of events of
+**`DOMSource.events(eventType, options, bubbles)`** returns a stream of events of
 `eventType` happening on the elements that match the current DOMSource. The
 event object contains the `ownerTarget` property that behaves exactly like
 `currentTarget`. The reason for this is that some browsers doesn't allow
 `currentTarget` property to be mutated, hence a new property is created. The
 returned stream is an *xstream* Stream if you use `@cycle/xstream-run` to run
 your app with this driver, or it is an RxJS Observable if you use
-`@cycle/rxjs-run`, and so forth.
+`@cycle/rxjs-run`, and so forth. 
 
 **options for DOMSource.events**
 
@@ -145,6 +145,9 @@ elements that match the selectors in the DOMSource (e.g. from previous
 is the singular version of `.elements()`, so the stream will emit an element,
 not an array. If there is no element that matches the selected DOMSource,
 then the returned stream will not emit anything.
+
+The `bubbles` parameter on `DOMSource.events(eventType, options, bubbles)` is an
+(optional) boolean to state if the event is a bubbe ovent or not (useful for custom, non standard, events).
 
 #### Arguments:
 
