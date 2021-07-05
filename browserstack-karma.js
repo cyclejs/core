@@ -2,7 +2,7 @@ module.exports = {
   // Latest mainstream
   BS_Chrome_Current: {
     base: 'BrowserStack',
-    browser: 'chrome',
+    browser: 'Chrome',
     browser_version: 'latest',
     os: 'Windows',
     os_version: '10',
@@ -33,7 +33,7 @@ module.exports = {
   // Older mainstream
   BS_Chrome_49: {
     base: 'BrowserStack',
-    browser: 'chrome',
+    browser: 'Chrome',
     browser_version: '49',
     os: 'Windows',
     os_version: '10',

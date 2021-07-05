@@ -1,5 +1,8 @@
 import xs, {Stream} from 'xstream';
 import {adapt} from '@cycle/run/lib/adapt';
+declare global {
+  function hasOwnProperty(key: string | number | symbol): boolean;
+}
 export type Component<So, Si> = (sources: So, ...rest: Array<any>) => Si;
 
 export type FirstArg<
@@ -77,7 +80,7 @@ function isolateAllSources<So extends Sources>(
   for (const channel in outerSources) {
     const outerSource = outerSources[channel] as IsolateableSource;
     if (
-      outerSources.hasOwnProperty(channel) &&
+      {}.hasOwnProperty.call(outerSources, channel) &&
       outerSource &&
       scopes[channel] !== null &&
       typeof outerSource.isolateSource === 'function'
@@ -86,7 +89,7 @@ function isolateAllSources<So extends Sources>(
         outerSource,
         scopes[channel]
       ) as any;
-    } else if (outerSources.hasOwnProperty(channel)) {
+    } else if ({}.hasOwnProperty.call(outerSources, channel)) {
       innerSources[channel] = outerSources[channel];
     }
   }
@@ -103,7 +106,7 @@ function isolateAllSinks<So extends Sources, Si>(
     const source = sources[channel] as IsolateableSource;
     const innerSink = innerSinks[channel];
     if (
-      innerSinks.hasOwnProperty(channel) &&
+      {}.hasOwnProperty.call(innerSinks, channel) &&
       source &&
       scopes[channel] !== null &&
       typeof source.isolateSink === 'function'
@@ -111,7 +114,7 @@ function isolateAllSinks<So extends Sources, Si>(
       outerSinks[channel] = adapt(
         source.isolateSink(xs.fromObservable(innerSink as any), scopes[channel])
       );
-    } else if (innerSinks.hasOwnProperty(channel)) {
+    } else if ({}.hasOwnProperty.call(innerSinks, channel)) {
       outerSinks[channel] = innerSinks[channel];
     }
   }
@@ -136,7 +139,7 @@ function isolateAllSinks<So extends Sources, Si>(
 export type OuterSo<ISo> = {
   [K in keyof ISo]: ISo[K] extends IsolateableSource
     ? FirstArg<IsolateableSource['isolateSource']>
-    : ISo[K]
+    : ISo[K];
 };
 
 export type OuterSi<ISo, ISi> = {
@@ -146,7 +149,7 @@ export type OuterSi<ISo, ISi> = {
         : (ReturnType<ISo[K]['isolateSink']> extends Stream<any>
             ? Stream<unknown>
             : unknown))
-    : ISi[K]
+    : ISi[K];
 } &
   {[K in Exclude<keyof ISi, keyof ISo>]: ISi[K]};
 

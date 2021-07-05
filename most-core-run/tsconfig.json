@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.common.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.symbol",
+      "es2015.iterable"
+    ]
+  },
+  "files": [
+    "src/index.ts"
+  ]
+}

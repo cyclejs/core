@@ -1,0 +1,67 @@
+{
+  "name": "@cycle/most-core-run",
+  "version": "1.0.0",
+  "description": "The Cycle run() function to be used with @most/core",
+  "main": "lib/cjs/index.js",
+  "module": "lib/es6/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "types": "lib/cjs/index.d.ts",
+  "repository": "https://github.com/cyclejs/cyclejs/tree/master/most-coreSetup-run",
+  "contributors": [
+    {
+      "name": "Andre Staltz",
+      "email": "andre@staltz.com"
+    },
+    {
+      "name": "Tylor Steinberger",
+      "email": "tlsteinberger167@gmail.com"
+    },
+    {
+      "name": "Fabiano Taioli",
+      "email": "ftaioli@gmail.com"
+    }
+  ],
+  "keywords": [
+    "Cycle",
+    "Cycle.js",
+    "Most",
+    "Most core",
+    "Most.js"
+  ],
+  "license": "MIT",
+  "bugs": "https://github.com/cyclejs/cyclejs/issues",
+  "homepage": "https://cycle.js.org",
+  "dependencies": {
+    "@cycle/run": "^5.2.0",
+    "@most/adapter": "^1.0.0",
+    "@most/core": "^1.3.4",
+    "@most/scheduler": "^1.2.2",
+    "@most/types": "^1.0.1",
+    "xstream": "*"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.12",
+    "@types/sinon": "^5.0.7",
+    "mocha": "^5.2.0",
+    "sinon": "^7.1.1",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "3.2.x",
+    "xstream": "11.x"
+  },
+  "scripts": {
+    "build": "pnpm run build-cjs && pnpm run build-es6",
+    "build-cjs": "tsc --module commonjs --outDir ./lib/cjs",
+    "build-es6": "tsc --module es6 --outDir ./lib/es6",
+    "lint": "tslint --project tsconfig.lint.json --config ../tslint.json",
+    "docs": "cd .. && node .scripts/make-api-docs.js most-run",
+    "changelog": "cd .. && node .scripts/update-changelogs.js most-run",
+    "test": "mocha test/*.ts --require ts-node/register --exit",
+    "test-ci": "../.scripts/retry.sh pnpm test",
+    "prepublishOnly": "pnpm run build && pnpm test"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

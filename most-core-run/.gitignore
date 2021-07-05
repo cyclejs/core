@@ -1,0 +1,9 @@
+.idea/
+*.sublime*
+
+node_modules
+*.log
+
+lib/
+coverage/
+dist/

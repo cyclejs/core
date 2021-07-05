@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "files": [
+    "src/index.ts",
+    "test/run.ts",
+    "test/setup.ts"
+  ]
+}
