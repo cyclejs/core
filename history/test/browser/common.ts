@@ -84,6 +84,8 @@ describe('captureClicks', () => {
       .subscribe({
         next: (location: Location) => {
           assert.strictEqual(location.pathname, '/test');
+          assert.strictEqual(location.search, '?foo');
+          assert.strictEqual(location.hash, '#bar');
           sub.unsubscribe();
           sink.shamefullySendComplete();
           done();
@@ -93,7 +95,7 @@ describe('captureClicks', () => {
       });
 
     const a = document.createElement('a');
-    a.href = '/test';
+    a.href = '/test?foo#bar';
     document.body.appendChild(a);
 
     setTimeout(() => {

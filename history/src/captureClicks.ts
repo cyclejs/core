@@ -30,7 +30,7 @@ function sameOrigin(href: string) {
   return href && href.indexOf(window.location.origin) === 0;
 }
 
-function makeClickListener(push: (p: string) => void) {
+function makeClickListener(push: (input: HistoryInput) => void) {
   return function clickListener(event: MouseEvent) {
     if (which(event) !== 1) {
       return;
@@ -76,11 +76,11 @@ function makeClickListener(push: (p: string) => void) {
 
     event.preventDefault();
     const {pathname, search, hash = ''} = element;
-    push(pathname + search + hash);
+    push({type: 'push', pathname, search, hash});
   };
 }
 
-function captureAnchorClicks(push: (p: string) => void) {
+function captureAnchorClicks(push: (input: HistoryInput) => void) {
   const listener = makeClickListener(push);
   if (typeof window !== 'undefined') {
     document.addEventListener(CLICK_EVENT, listener as EventListener, false);
@@ -96,8 +96,8 @@ export function captureClicks(historyDriver: HistoryDriver): HistoryDriver {
       start: () => {},
       stop: () => typeof cleanup === 'function' && cleanup(),
     });
-    cleanup = captureAnchorClicks((pathname: string) => {
-      internalSink$._n({type: 'push', pathname});
+    cleanup = captureAnchorClicks((input: HistoryInput) => {
+      internalSink$._n(input);
     });
     sink$._add(internalSink$);
     return historyDriver(internalSink$);
