@@ -12,6 +12,7 @@ interface ModulesForHTML {
   props: Module;
   class: Module;
   style: Module;
+  dataset: Module;
 }
 
 export type Module = (vnode: VNode, attributes: Map<string, any>) => void;
@@ -21,6 +22,7 @@ const defaultModules = [
   modulesForHTML.props,
   modulesForHTML.class,
   modulesForHTML.style,
+  modulesForHTML.dataset,
 ];
 
 export interface HTMLDriverOptions {
