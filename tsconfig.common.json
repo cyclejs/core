@@ -2,7 +2,8 @@
   "compilerOptions": {
     "removeComments": false,
     "preserveConstEnums": true,
-    "sourceMap": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "declaration": true,
     "noImplicitAny": true,
     "strict": true,
